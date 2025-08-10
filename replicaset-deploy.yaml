@@ -33,7 +33,7 @@ spec:
   type: NodePort
   ports:
   - port: 80           # Porta exposta pelo Service dentro do cluster
-    targetPort: 8080     # Porta do container para onde o tráfego será direcionado (corrigido para 80)
+    targetPort: 8080     # Porta do container para onde o tráfego será direcionado
     name: http
     protocol: TCP
     nodePort: 30000    # Porta do nó para acesso externo (localhost:30000)
