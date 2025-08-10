@@ -18,7 +18,7 @@ spec:
         image: oalexandrino/conversao-temperatura-kind:v1  # Imagem Docker usada
         ports:
         - name: http
-          containerPort: 8080  # Porta exposta pelo container (corrija para 8080 se seu app escuta nessa porta)
+          containerPort: 8080  # Porta exposta pelo container
           protocol: TCP
 
 ---
