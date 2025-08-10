@@ -1,11 +1,11 @@
 kind: Cluster
 apiVersion: kind.x-k8s.io/v1alpha4
+name: meu-cluster
 nodes:
-  - role: control-plane
-    extraPortMappings:
-      - containerPort: 30080
-        hostPort: 8080
-        protocol: TCP
-  - role: worker
-  - role: worker
-  - role: worker
+- role: control-plane
+  extraPortMappings:
+  - containerPort: 30000   # porta do NodePort dentro do nó
+    hostPort: 30000        # porta no Windows
+    protocol: TCP
+- role: worker
+- role: worker

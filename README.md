@@ -6,6 +6,13 @@ O projeto conversão de temperatura é um projeto desenvolvido em NodeJS. O proj
 ### Observações do projeto
 A aplicação é exposta usando a porta 8080
 
-### adicionar imagem local no cluster:
+## Passo a passo
+
+# Criar cluster
+## adicionar imagem local no cluster:
 
  kind load --name meu-cluster docker-image oalexandrino/conversao-temperatura-kind:v1
+
+## Aplicar o deploy
+
+kubectl apply -f .\deploy.yaml
