@@ -1,36 +1,39 @@
+# Deployment: cria 25 réplicas do pod rodando a aplicação de conversão de temperatura
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: conversao-deployment
 spec:
-  replicas: 25
+  replicas: 25  # Número de réplicas do pod
   selector:
     matchLabels:
-      app: conversao
+      app: conversao  # Seleciona pods com esse label
   template:
     metadata:
       labels:
-        app: conversao
+        app: conversao  # Label usada pelo Service para identificar os pods
     spec:
       containers:
       - name: conversao
-        image: oalexandrino/conversao-temperatura-kind:v1
+        image: oalexandrino/conversao-temperatura-kind:v1  # Imagem Docker usada
         ports:
         - name: http
-          containerPort: 80
+          containerPort: 8080  # Porta exposta pelo container (corrija para 8080 se seu app escuta nessa porta)
           protocol: TCP
+
 ---
+# Service: expõe a aplicação para fora do cluster via NodePort
 apiVersion: v1
 kind: Service
 metadata:
   name: conversao
 spec:
   selector:
-    app: conversao
+    app: conversao  # Seleciona os pods criados acima
   type: NodePort
   ports:
-  - port: 80
-    targetPort: 8080
+  - port: 80           # Porta exposta pelo Service dentro do cluster
+    targetPort: 8080     # Porta do container para onde o tráfego será direcionado (corrigido para 80)
     name: http
     protocol: TCP
-    nodePort: 30000
+    nodePort: 30000    # Porta do nó para acesso externo (localhost:30000)
